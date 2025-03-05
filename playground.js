@@ -1,3 +1,6 @@
+import { Oscilloscope } from 'https://esm.sh/@teropa/oscilloscope';
+import AudioMotionAnalyzer from 'https://esm.sh/audiomotion-analyzer';
+
 let initialised = false;
 
 const ctx = new AudioContext();
