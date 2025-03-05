@@ -74,6 +74,19 @@ startButton.addEventListener('click', start);
 playButton.addEventListener('click', togglePlay);
 stopButton.addEventListener('click', stop);
 
+export class NoiseNode extends AudioBufferSourceNode {
+  constructor(context, options = {}) {
+    const buffer = new AudioBuffer({ length: 44100, sampleRate: context.sampleRate });
+    const data = Array
+        .from({ length: buffer.length })
+        .map(() => Math.random() * 2 - 1);
+
+    buffer.copyToChannel(Float32Array.from(data), 0, 0);
+    
+    super(context, { ...options, loop: true, buffer });
+  }
+};
+
 export const compose = (composition) => {
   startButton.disabled = false;
   createGraph = composition;
