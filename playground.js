@@ -3,7 +3,7 @@ import AudioMotionAnalyzer from 'https://esm.sh/audiomotion-analyzer';
 
 document.body.innerHTML = `
 <nav id="controls">
-  <button id="start">Start</button>
+  <button id="start" disabled>Start</button>
   <button id="stop" disabled>Stop</button>
 </nav>
 
