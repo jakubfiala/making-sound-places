@@ -91,3 +91,5 @@ export const compose = (composition) => {
   startButton.disabled = false;
   createGraph = composition;
 };
+
+export const choose = list => list[Math.floor(Math.random() * list.length)];
