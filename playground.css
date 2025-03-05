@@ -1,0 +1,20 @@
+html {
+  font-family: sans-serif;
+  background: #111;
+}
+
+button {
+  font: inherit;
+}
+
+#controls {
+  margin: 1rem 0;
+}
+
+#oscilloscope,
+#spectrum {
+  border: solid 2px #eee;
+  width: 500px;
+  height: 150px;
+  margin-top: 1rem;
+}
