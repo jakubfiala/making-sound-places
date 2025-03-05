@@ -1,6 +1,17 @@
 import { Oscilloscope } from 'https://esm.sh/@teropa/oscilloscope';
 import AudioMotionAnalyzer from 'https://esm.sh/audiomotion-analyzer';
 
+document.body.innerHTML = `
+<nav id="controls">
+  <button id="start">Start</button>
+  <button id="stop" disabled>Stop</button>
+</nav>
+
+<canvas id="oscilloscope" width="1000" height="200"></canvas>
+
+<div id="spectrum"></div>
+`;
+
 let initialised = false;
 
 const ctx = new AudioContext();
