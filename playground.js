@@ -24,7 +24,7 @@ const ctx = new AudioContext();
 const oscilloscope = new Oscilloscope(document.getElementById('oscilloscope'), ctx, { lineColor: '#0f0', lineWidth: 2 });
 const spectrum = new AudioMotionAnalyzer(
   document.getElementById('spectrum'),
-  { audioCtx: ctx, fftSize: 32768, connectSpeakers: false },
+  { audioCtx: ctx, fftSize: 32768 },
 );
 
 oscilloscope.start();
