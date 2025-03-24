@@ -18,7 +18,7 @@ button {
 #oscilloscope,
 #spectrum {
   border: solid 2px #eee;
-  width: 500px;
+  width: 350px;
   height: 150px;
   margin-top: 1rem;
 }
