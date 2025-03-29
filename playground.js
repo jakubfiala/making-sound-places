@@ -98,3 +98,9 @@ export const compose = (composition) => {
 };
 
 export const choose = list => list[Math.floor(Math.random() * list.length)];
+
+export const loadSound = async (context, url) => {
+  const audioData = await loadFromURL(url);
+  const buffer = await context.decodeAudioData(audioData);
+  return new AudioBufferSourceNode(context, { buffer });
+};
