@@ -87,6 +87,11 @@ export class NoiseNode extends AudioBufferSourceNode {
   }
 };
 
+export const loadFromURL = async (url) => {
+  const response = await fetch(url);
+  return response.arrayBuffer();
+};
+
 export const compose = (composition) => {
   startButton.disabled = false;
   createGraph = composition;
