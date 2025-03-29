@@ -34,8 +34,8 @@ ctx.suspend();
 let graph;
 let createGraph = () => {};
 
-const start = () => {
-  graph = createGraph(ctx);
+const start = async () => {
+  graph = await createGraph(ctx);
   if (graph) {
     startButton.disabled = true;
     playButton.disabled = false;
