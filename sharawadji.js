@@ -63,6 +63,7 @@ export const loadSoundInSpace = async (context, url) => {
   panner.distanceModel = 'exponential';
   panner.refDistance = 0.0001;
   panner.maxDistance = 250;
+  panner.rolloffFactor = 2;
 
   source.connect(panner);
 
