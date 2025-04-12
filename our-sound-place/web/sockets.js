@@ -1,5 +1,5 @@
 export const createSocket = (sharawadji) => {
-  const ws = new WebSocket('ws://localhost:3333/');
+  const ws = new WebSocket('https://subtle-lokum-527cd0.netlify.app:3333/');
 
   ws.addEventListener('error', console.error);
 
