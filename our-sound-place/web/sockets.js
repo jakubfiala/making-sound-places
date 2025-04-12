@@ -1,5 +1,5 @@
 export const createSocket = (sharawadji) => {
-  const ws = new WebSocket('ws://localhost:3333/');
+  const ws = new WebSocket('https://our-sound-places-yx7kf.ondigitalocean.app/');
 
   ws.addEventListener('error', console.error);
 
