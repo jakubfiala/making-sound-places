@@ -22,6 +22,8 @@ class Sound {
       filterFrequency = 22000,
       filterType = 'lowpass',
       positionZ = 0,
+      startTime = 0,
+      endTime = Infinity,
     } = data;
     this.position = new LatLng(lat, lng);
     this.src = src;
@@ -31,6 +33,8 @@ class Sound {
     this.filterFrequency = filterFrequency,
     this.filterType = filterType,
     this.positionZ = positionZ;
+    this.startTime = startTime;
+    this.endTime = endTime;
 
     if (debug) {
       this.marker = new Marker({
@@ -42,6 +46,8 @@ class Sound {
 
     this.context = context;
     this.destination = destination;
+
+    this.abortController = new AbortController();
 
     this.updateMix(1);
   }
@@ -85,9 +91,11 @@ class Sound {
   start() {
     this.source = new AudioBufferSourceNode(this.context);
     this.source.loop = this.loop;
+    this.source.loopStart = this.startTime;
+    this.source.loopEnd = Math.min(this.buffer.duration, this.endTime);
     this.source.buffer = this.buffer;
     this.source.connect(this.processingChainStart);
-    this.source.start(this.context.currentTime);
+    this.source.start(this.context.currentTime, this.startTime);
     this.state = Sound.state.PLAYING;
   }
 
@@ -97,6 +105,11 @@ class Sound {
   }
 
   remove() {
+    console.log('removing', this.data.name, this.source);
+    if (this.state === Sound.state.LOADING) {
+      this.abortController.abort();
+    }
+
     this.source?.stop();
     this.source?.disconnect();
     this.state = Sound.state.REMOVED;
@@ -109,7 +122,7 @@ class Sound {
     }
 
     this.state = Sound.state.LOADING;
-    const response = await fetch(this.src);
+    const response = await fetch(this.src, { signal: this.abortController.signal });
     const soundData = await response.arrayBuffer();
     if (this.debug) console.info(`loading ${this.src}`);
 
@@ -118,6 +131,8 @@ class Sound {
       const buffer = await this.context.decodeAudioData(
         soundData,
       );
+
+      if (this.state === Sound.state.REMOVED) return;
 
       if (this.debug) console.info(`loaded`, this.src);
       this.buffer = buffer;

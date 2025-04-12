@@ -8,7 +8,6 @@ export const createSocket = (sharawadji) => new Promise((resolve, reject) => {
 
   ws.addEventListener('open', () => {
     console.log('[ws]', 'connected');
-    resolve(ws);
   });
 
   ws.addEventListener('message', ({ data: message }) => {
@@ -17,6 +16,8 @@ export const createSocket = (sharawadji) => new Promise((resolve, reject) => {
 
     switch (data.type) {
       case 'all sounds':
+        resolve(ws);
+
         for (const sound of data.sounds) {
           sharawadji.addSound(sound);
         }
