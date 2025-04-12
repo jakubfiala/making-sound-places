@@ -49,6 +49,8 @@ async function initMap() {
   socket = createSocket(sharawadji);
 };
 
+await initMap();
+
 const startButton = document.getElementById('start');
 const intro = document.getElementById('intro');
 
@@ -65,5 +67,3 @@ export const createPlace = (sounds) => {
 window.createPlace = createPlace;
 
 startButton.addEventListener('click', initAudio);
-
-initMap();
