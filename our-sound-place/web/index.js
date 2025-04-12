@@ -18,7 +18,7 @@ let map, sharawadji, socket;
 const ctx = new AudioContext();
 ctx.suspend();
 
-async function initMap() {
+export const start = async () => {
   const mapsLoader = new MapsAPILoader({
     apiKey: 'AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ',
     version: '3.exp',
@@ -49,7 +49,7 @@ async function initMap() {
   socket = createSocket(sharawadji);
 };
 
-await initMap();
+window.start = start;
 
 const startButton = document.getElementById('start');
 const intro = document.getElementById('intro');
