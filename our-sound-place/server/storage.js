@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 
 const PATH = './sounds.json';
 
-let sounds = [
+export let sounds = [
   {"name":"Jakub - bird chirping","lat":52.532889996389756,"lng":13.401282943281256,"src":"https://sound-effects-media.bbcrewind.co.uk/mp3/NHU05050147.mp3","gain":0.9,"loop":true},
 ];
 
