@@ -3,16 +3,15 @@ import { existsSync } from 'path';
 
 const PATH = './sounds.json';
 
-const defaultSounds = [
+let sounds = [
   {"name":"Jakub - bird chirping","lat":52.532889996389756,"lng":13.401282943281256,"src":"https://sound-effects-media.bbcrewind.co.uk/mp3/NHU05050147.mp3","gain":0.9,"loop":true},
-]
+];
 
-if (!existsSync(PATH)) {
-  await fs.writeFile(PATH, JSON.stringify(defaultSounds, null, 2));
-}
+try {
+  sounds = JSON.parse(await fs.readFile(PATH));
+} catch (err) {}
 
-export const sounds = JSON.parse(await fs.readFile(PATH));
-console.info('Loaded sounds JSON file');
+console.info('Loaded sounds JSON file', sounds);
 
 const persist = () => {
   console.info('Persisting.');
