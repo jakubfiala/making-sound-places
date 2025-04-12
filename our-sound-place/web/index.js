@@ -18,7 +18,7 @@ let map, sharawadji, socket;
 const ctx = new AudioContext();
 ctx.suspend();
 
-export const start = async () => {
+export const connect = async () => {
   const mapsLoader = new MapsAPILoader({
     apiKey: 'AIzaSyA1VOiLnJEwz3HzcDxEExa_tCTu5KKOoqQ',
     version: '3.exp',
@@ -46,10 +46,17 @@ export const start = async () => {
   });
 
   sharawadji = new Sharawadji([], map, { debug: true }, ctx);
-  socket = createSocket(sharawadji);
+  socket = await createSocket(sharawadji);
+
+  return {
+    createPlace: (sounds) => {
+      sounds.forEach(s => sharawadji.addSound(s));
+      socket.send(JSON.stringify({ type: 'update sounds', sounds }))
+    },
+  }
 };
 
-window.start = start;
+window.connect = connect;
 
 const startButton = document.getElementById('start');
 const intro = document.getElementById('intro');
@@ -58,12 +65,5 @@ const initAudio = async () => {
   intro.hidden = true;
   await ctx.resume();
 };
-
-export const createPlace = (sounds) => {
-  sounds.forEach(s => sharawadji.addSound(s));
-  socket.send(JSON.stringify({ type: 'update sounds', sounds }))
-};
-
-window.createPlace = createPlace;
 
 startButton.addEventListener('click', initAudio);

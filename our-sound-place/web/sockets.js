@@ -1,10 +1,14 @@
-export const createSocket = (sharawadji) => {
+export const createSocket = (sharawadji) => new Promise((resolve, reject) => {
   const ws = new WebSocket('https://our-sound-places-yx7kf.ondigitalocean.app/');
 
-  ws.addEventListener('error', console.error);
+  ws.addEventListener('error', (err) => {
+    console.error(err);
+    reject(err);
+  });
 
   ws.addEventListener('open', () => {
     console.log('[ws]', 'connected');
+    resolve(ws);
   });
 
   ws.addEventListener('message', ({ data: message }) => {
@@ -22,6 +26,4 @@ export const createSocket = (sharawadji) => {
         return;
     }
   });
-
-  return ws;
-}
+});
