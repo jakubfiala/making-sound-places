@@ -17,7 +17,7 @@ class Sound {
       lat,
       lng,
       gain,
-      rolloffFactor = 2.5,
+      rolloffFactor = 2,
       loop = true,
       filterFrequency = 22000,
       filterType = 'lowpass',
