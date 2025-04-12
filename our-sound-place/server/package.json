@@ -1,0 +1,15 @@
+{
+  "name": "our-sound-place",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.18.1"
+  }
+}
