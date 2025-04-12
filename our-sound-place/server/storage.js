@@ -1,5 +1,4 @@
 import fs from 'fs/promises';
-import { existsSync } from 'path';
 
 const PATH = './sounds.json';
 
