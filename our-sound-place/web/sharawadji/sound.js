@@ -12,12 +12,25 @@ class Sound {
     this.map = map;
     this.state = Sound.state.IDLE;
 
-    const { src, lat, lng, gain, rolloffFactor = 1.5, loop = true } = data;
+    const {
+      src,
+      lat,
+      lng,
+      gain,
+      rolloffFactor = 2.5,
+      loop = true,
+      filterFrequency = 22000,
+      filterType = 'lowpass',
+      positionZ = 0,
+    } = data;
     this.position = new LatLng(lat, lng);
     this.src = src;
     this.loop = loop;
     this.gainValue = gain;
     this.rolloffFactor = rolloffFactor;
+    this.filterFrequency = filterFrequency,
+    this.filterType = filterType,
+    this.positionZ = positionZ;
 
     if (debug) {
       this.marker = new Marker({
@@ -38,7 +51,8 @@ class Sound {
       IDLE: 0,
       LOADING: 1,
       PLAYING: 2,
-      SUSPENDED: 3
+      SUSPENDED: 3,
+      REMOVED: 4,
     };
   }
 
@@ -50,11 +64,12 @@ class Sound {
     this.panner.maxDistance = 250;
     this.panner.positionX.value = this.position.lat();
     this.panner.positionY.value = this.position.lng();
+    this.panner.positionZ.value = this.positionZ;
     this.panner.rolloffFactor = this.rolloffFactor;
 
     this.filter = new BiquadFilterNode(this.context);
-    this.filter.type = 'lowpass';
-    this.filter.frequency.value = 22000;
+    this.filter.type = this.filterType;
+    this.filter.frequency.value = this.filterFrequency;
 
     this.gain = new GainNode(this.context);
     this.gain.gain.setValueAtTime(this.gainValue, this.context.currentTime);
@@ -79,6 +94,12 @@ class Sound {
   suspend() {
     this.source.disconnect();
     this.state = Sound.state.SUSPENDED;
+  }
+
+  remove() {
+    this.source?.stop();
+    this.source?.disconnect();
+    this.state = Sound.state.REMOVED;
   }
 
   async load() {
@@ -118,6 +139,8 @@ class Sound {
     const distance = latLngDist(this.position, userPosition);
 
     switch(this.state) {
+      case Sound.state.REMOVED:
+        return false;
       case Sound.state.LOADING:
         return false;
       case Sound.state.PLAYING:

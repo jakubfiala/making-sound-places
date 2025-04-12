@@ -76,7 +76,7 @@ class Sharawadji {
 
     if (index != -1) {
       console.log('[sharawadji]', 'replacing sound at', index);
-      this.sounds[index].processingChainEnd?.disconnect();
+      this.sounds[index].remove();
       this.sounds.splice(index, 1);
     };
 
