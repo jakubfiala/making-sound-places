@@ -15,7 +15,7 @@ server.on('connection', (socket) => {
 
   const interval = setInterval(() => {
     socket.send('{ "type": "still there" }');
-  });
+  }, 5_000);
 
   socket.on('close', () => {
     clearInterval(interval);
