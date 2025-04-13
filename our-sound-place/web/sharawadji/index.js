@@ -1,5 +1,5 @@
 import { Sound } from './sound.js';
-import { calculateListenerOrientation } from 'https://esm.run/panner-utils';
+import { calculateListenerOrientation } from './panner-utils.js';
 
 const ATTENUATION_TARGET = 60;
 const LISTENER_HEADING_OFFSET_DEG = 90;

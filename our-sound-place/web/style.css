@@ -4,6 +4,10 @@ html, body {
   font-family: sans-serif;
 }
 
+button {
+  font: inherit;
+}
+
 #map {
   width: 100%;
   height: 100vh;
@@ -34,10 +38,22 @@ html, body {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 30vw;
+  grid-template-columns: 1fr 40vw;
 }
 
-iframe {
+aside {
+  background: #282c34;
+  color: white;
+  overflow-y: auto;
   height: 100vh;
-  width: 100%;
+}
+
+aside h2 {
+  margin: 0 0.5rem 0.5rem;
+}
+
+aside header {
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
 }

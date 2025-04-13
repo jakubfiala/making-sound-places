@@ -6,17 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Our Sound Place</title>
     <link rel="stylesheet" href="./style.css">
-    <script type="module" defer src="./viewer.js"></script>
+    <script type="module" defer src="./dist/index.js"></script>
   </head>
   <body>
     <main>
       <div id="map"></div>
       <aside>
-        <iframe scrolling="no" title="Making Sound-Places - SIGNALS-CONNECTIONS - Our Sound Place" src="https://codepen.io/fiala__/embed/QwWeQXv?default-tab=js%2Cresult&editable=true&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-          See the Pen <a href="https://codepen.io/fiala__/pen/QwWeQXv">
-          Making Sound-Places - SIGNALS-CONNECTIONS - Our Sound Place</a> by Jakub Fiala (<a href="https://codepen.io/fiala__">@fiala__</a>)
-          on <a href="https://codepen.io">CodePen</a>.
-        </iframe>
+        <header>
+          <h2>Your sounds</h2>
+          <button id="update">Update</button>
+        </header>
+        <div id="editor"></div>
+        <h2>Example sound</h2>
+        <div id="example"></div>
       </aside>
     </main>
     <div id="intro">
