@@ -6,6 +6,7 @@ html, body {
 
 button {
   font: inherit;
+  cursor: pointer;
 }
 
 #map {

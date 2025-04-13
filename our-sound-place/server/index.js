@@ -13,8 +13,20 @@ server.on('connection', (socket) => {
   console.info('new connection');
   socket.send(JSON.stringify({ type: 'all sounds', sounds: storage.sounds }));
 
+  const interval = setInterval(() => {
+    socket.send('{ "type": "still there" }');
+  });
+
+  socket.on('close', () => {
+    clearInterval(interval);
+  });
+
   socket.on('message', (message) => {
     console.info('received message', message.toString());
+    if (message.toString() === 'ping') {
+      return socket.send('pong');
+    }
+
     const data = JSON.parse(message);
 
     switch (data.type) {
