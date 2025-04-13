@@ -1,5 +1,16 @@
-export const createSocket = (sharawadji) => new Promise((resolve, reject) => {
+export const SOCKET_URL = 'https://our-sound-places-yx7kf.ondigitalocean.app/';
+
+export const createEditorSocket = () => new Promise((resolve, reject) => {
   const ws = new WebSocket('https://our-sound-places-yx7kf.ondigitalocean.app/');
+
+  ws.addEventListener('open', () => {
+    console.log('[ws]', 'connected');
+    resolve(ws);
+  });
+});
+
+export const createViewerSocket = (sharawadji) => new Promise((resolve, reject) => {
+  const ws = new WebSocket(SOCKET_URL);
 
   ws.addEventListener('error', (err) => {
     console.error(err);

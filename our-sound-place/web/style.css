@@ -31,3 +31,13 @@ html, body {
   font: inherit;
   cursor: pointer;
 }
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 30vw;
+}
+
+iframe {
+  height: 100vh;
+  width: 100%;
+}
