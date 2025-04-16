@@ -29,6 +29,8 @@ export const createViewerSocket = (sharawadji) => new Promise((resolve, reject) 
       case 'all sounds':
         resolve(ws);
 
+        localStorage.setItem('cache', JSON.stringify(data.sounds));
+
         for (const sound of data.sounds) {
           sharawadji.addSound(sound);
         }
