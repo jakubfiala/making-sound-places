@@ -1864,10 +1864,14 @@ const createViewerSocket = (sharawadji) => new Promise((resolve, reject) => {
       case 'all sounds':
         resolve(ws);
 
+        localStorage.setItem('cache', JSON.stringify(data.sounds));
+
         for (const sound of data.sounds) {
           sharawadji.addSound(sound);
         }
         break;
+      case 'still there':
+        console.debug('server still there');
       default:
         console.warn('unknown message type', data.type);
         return;
