@@ -64,7 +64,8 @@ h1 {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 40vw;
+  /* grid-template-columns: 1fr 40vw; */
+  grid-template-columns: 1fr;
 }
 
 aside {
